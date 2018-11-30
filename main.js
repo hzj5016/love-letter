@@ -66,6 +66,12 @@ let css2 = `/*
 #paper{
   padding: 20px;
 }
+#paper> .markdownBody{
+  color: red;
+}
+#code{
+  overflow: auto;
+}
 `
 let markdown = `
 ## 大标题
@@ -82,8 +88,6 @@ writeCSS('', css1, () => {
     })
   })
 })
-
-
 //把code写到#code和style标签里
 function writeCSS(prefix, code, fn) {
   let domCode = document.querySelector('#code')
@@ -97,7 +101,7 @@ function writeCSS(prefix, code, fn) {
       window.clearInterval(timer)
       fn && fn.call()
     }
-  }, 40)
+  }, 0)
 }
 //创建一张白纸
 function createPaper(fn) {
@@ -106,6 +110,7 @@ function createPaper(fn) {
   let content = document.createElement('pre')
   content.className = "content"
   paper.appendChild(content)
+  console.log(content)
   let wrapper = document.querySelector('#code-wrapper')
   wrapper.appendChild(paper)
   fn && fn.call()
@@ -113,7 +118,6 @@ function createPaper(fn) {
 //在白纸里面写markdown
 function writeMarkdown(markdown, fn) {
   let domPaper = document.querySelector('#paper> .content')
-
   let n = 0
   let id = setInterval(function () {
     n++
@@ -128,7 +132,7 @@ function writeMarkdown(markdown, fn) {
 //把markdown转为HTML
 function markdownToHTML(fn) {
   let div = document.createElement('div')
-  div.className = "markdowm-body"
+  div.className = "markdownBody"
   div.innerHTML = marked(markdown)
   let markdownContain = document.querySelector('#paper> .content')
   markdownContain.replaceWith(div)

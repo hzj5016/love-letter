@@ -18,13 +18,11 @@ ul,li{
     overflow: hidden;
 }
 #paper{
-    color: purple;
-}
-#paper{
     height: 100vh;
     width: 50%;
-    border: 1px solid red;
+    border: 1px solid grey;
 }
+
 @keyframes breath{
     0%{
         box-shadow: 0 0 10px rgb(33, 248, 5)
