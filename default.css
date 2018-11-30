@@ -1,0 +1,35 @@
+*{margin: 0; padding: 0;}
+*{box-sizing: border-box;}
+ul,li{
+    list-style: none;
+}
+.token.function,
+.token.property,
+.token.selector{
+    color: black;
+}
+#code-wrapper{
+    padding: 16px;
+    height: 85vh;
+    display: flex;
+}
+#code{
+    width: 100%;
+    overflow: hidden;
+}
+#paper{
+    color: purple;
+}
+#paper{
+    height: 100vh;
+    width: 50%;
+    border: 1px solid red;
+}
+@keyframes breath{
+    0%{
+        box-shadow: 0 0 10px rgb(33, 248, 5)
+    }
+    100%{
+        box-shadow: 0 0 10px rgba(10, 9, 1, 0.884)
+    }
+}
