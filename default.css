@@ -21,6 +21,8 @@ ul,li{
     height: 100vh;
     width: 50%;
     border: 1px solid grey;
+    overflow: hidden;
+    color: green;
 }
 
 @keyframes breath{

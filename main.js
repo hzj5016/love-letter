@@ -59,30 +59,120 @@ let css2 = `/*
   animation: breath 0.5s infinite alternate-reverse
 }
 #code-wrapper{
-  
   justify-content: space-between;
 }
 /*接下来我们在白纸上写字吧*/
 #paper{
   padding: 20px;
 }
-#paper> .markdownBody{
-  color: red;
-}
+`
+let css3 = `/*
+老婆，情书写完了，但是
+不能滑动来看，
+没关系，我们加点效果
+*/
 #code{
   overflow: auto;
 }
+#paper{
+  overflow: auto;
+}
+
 `
 let markdown = `
-## 大标题
-- hello
+## 相遇
+- 你知道什么是意外嘛？
+- 就是，我没想过会遇到你，
+- 但我遇见了。
+- 我从没想过会爱上你，
+- 但我爱上了。
+- 夏天，我遇到你的，
+- 第一个夏天。
+- 我就想给你整个世界。
+
+## 性格
+- 可能你也很傲娇吧，
+- 可能你也有小性格吧，
+- 不要哭，不要气，
+- 我一直都在，
+- 你回头，
+- 我会抱着你。
+
+## 孤独
+- 虽然我们已经好了，
+- 但我还是孤独。
+- 与生俱来的孤独。
+- 我都还没，
+- 准备好恋爱，
+- 你就来了。
+- 这个冬天特备冷。
+- 在这所校园里，
+- 看曾经，
+- 看现在，
+- 看未来，
+- 我都不知所措
+
+## 此刻
+- 你来之前，我怕太长，
+- 见你之后，我恐太短。
+- 这就是为什么，
+- 见面后，
+- 我总想多呆一天的原因。
+- 我就是想，
+- 多抱着你一会儿。
+- 你的眼里在我看来，
+- 藏不住任何心事。
+- 怪就怪，
+- 这被子太清。
+- 压不住，
+- 我想你的心。
+
+## 接触
+- 第一次见面，
+- 就把我惊到了。
+- 竟然大老远去保定找我，
+- 就不怕我对你，
+- 做坏事吗？
+- 记得那一天我们，
+- 喝了点酒，
+- 也谈了好多里。
+- 说实话我还有点害羞了呢！
+- 第二次接触，
+- 我就碰到了你的软处。
+- 你的泪水流到了，
+- 我的肩膀上。
+- 已经有两次了。
+- 每次谈起来，
+- 你都会流泪。
+- 也许你还不知道，
+- 我心疼的要死。
+
+##未来
+- 未来总让人捉摸不透。
+- 冬日的寒风，
+- 把我的身体吹透。
+- 只有我抱着你的时候，
+- 才最踏实。
+
+##结语
+- 江湖太长，我不去了。
+- 雨露伴着初阳，
+- 晚风吹着落霞。
+- 少年陪着姑娘，
+- 而我只陪着你。
+- 2018，12月，1日-- 星期六
+- ——老头
+
+
 `
 writeCSS('', css1, () => {
   createPaper(() => {
     writeCSS(css1, css2, () => {
       writeMarkdown(markdown, () => {
         markdownToHTML(() => {
-          console.log(1)
+          writeCSS(css1 + css2, css3, () => {
+            console.log(1)
+          })
         })
       })
     })
@@ -101,7 +191,7 @@ function writeCSS(prefix, code, fn) {
       window.clearInterval(timer)
       fn && fn.call()
     }
-  }, 0)
+  }, 100)
 }
 //创建一张白纸
 function createPaper(fn) {
@@ -117,17 +207,18 @@ function createPaper(fn) {
 }
 //在白纸里面写markdown
 function writeMarkdown(markdown, fn) {
+  let slied = document.querySelector('#paper')
   let domPaper = document.querySelector('#paper> .content')
   let n = 0
   let id = setInterval(function () {
     n++
     domPaper.innerHTML = markdown.substring(0, n)
-    domPaper.scrollTop = domPaper.scrollHeight
+    slied.scrollTop = slied.scrollHeight
     if (n >= markdown.length) {
       window.clearInterval(id)
       fn && fn.call()
     }
-  }, 35)
+  }, 50)
 }
 //把markdown转为HTML
 function markdownToHTML(fn) {
