@@ -169,7 +169,7 @@ function writeCSS(prefix, code, fn) {
       window.clearInterval(timer)
       fn && fn.call()
     }
-  }, 100)
+  }, 30)
 }
 //创建一张白纸
 function createPaper(fn) {
